@@ -16,7 +16,7 @@
 # 3. https://nij.ojp.gov/topics/law-enforcement/use-of-force
 # 4. https://www.kaggle.com/jpmiller/police-violence-in-the-us
 
-# In[29]:
+# In[2]:
 
 
 import pandas as pd
@@ -27,7 +27,7 @@ df = pd.DataFrame(csv)
 
 # The Y variable, use of intentional force, can be explained by two X variables - race of the victim and age of the victim. 
 
-# In[27]:
+# In[3]:
 
 
 #Cleaning the dataset to remove any rows with missing data values in columns containing the X and Y values
@@ -36,10 +36,26 @@ cleandf1 = newdf[newdf["Subject's age"].notna()]
 cleandf2 = cleandf1[cleandf1["Subject's race"].notna()]
 
 
-# In[28]:
+# In[13]:
 
 
-pd.describe(cleandf2["Subject's age"])
+#Summary Statistics
+cleandf2.describe()
+
+
+# In[14]:
+
+
+#Summary statistics
+cleandf2.agg({
+    "Subject's age": ["min", "max"]
+})
+
+
+# In[23]:
+
+
+cleandf2["Intentional Use of Force (Developing)"].hist(by=cleandf2["Subject's race"])
 
 
 # In[ ]:
