@@ -16,10 +16,11 @@
 # 3. https://nij.ojp.gov/topics/law-enforcement/use-of-force
 # 4. https://www.kaggle.com/jpmiller/police-violence-in-the-us
 
-# In[2]:
+# In[ ]:
 
 
 import pandas as pd
+import matplotlib.pyplot as plt
 csv= pd.read_csv("fatal_encounters_dot_org.csv")
 
 df = pd.DataFrame(csv)
@@ -27,23 +28,24 @@ df = pd.DataFrame(csv)
 
 # The Y variable, use of intentional force, can be explained by two X variables - race of the victim and age of the victim. 
 
-# In[3]:
+# In[52]:
 
 
 #Cleaning the dataset to remove any rows with missing data values in columns containing the X and Y values
 newdf = df.filter(["Subject's age", "Subject's race","Intentional Use of Force (Developing)"], axis=1)
 cleandf1 = newdf[newdf["Subject's age"].notna()]
 cleandf2 = cleandf1[cleandf1["Subject's race"].notna()]
+print(cleandf2)
 
 
-# In[13]:
+# In[53]:
 
 
 #Summary Statistics
 cleandf2.describe()
 
 
-# In[14]:
+# In[54]:
 
 
 #Summary statistics
@@ -52,10 +54,63 @@ cleandf2.agg({
 })
 
 
-# In[23]:
+# In[55]:
 
 
-cleandf2["Intentional Use of Force (Developing)"].hist(by=cleandf2["Subject's race"])
+cleandf2["Subject's age"].unique() 
+
+
+# In[56]:
+
+
+#Changing months to years and cleaning up the age column
+cleandf2["Subject's age"].replace({"20s": "20", "60s": "60", "18-25": "21", "18 months": "1.5", "46/53": "50", "3 months": "0.25", "40s": "40", "30s": "30", "50s": "50", "6 months": "0.5", "9 months": "0.75", "10 months": "0.83", "3 days": "0.008", "55.": "55", "20s-30s": "25", "40-50": "45", "4 months": "0.3", "70s": "70", "2 months": "0.17", "7 months": "0.58", "8 months": "0.67"}, inplace=True)
+
+cleandf2["Subject's age"].unique() 
+
+
+# In[57]:
+
+
+cleandf2["Subject's race"].unique()
+
+
+# In[58]:
+
+
+cleandf2["Intentional Use of Force (Developing)"].hist(by=cleandf2["Subject's race"], figsize=(15, 30), sharey=True)
+
+
+# In[59]:
+
+
+cleandf2["Intentional Use of Force (Developing)"].hist(figsize=(20, 9))
+
+
+# In[60]:
+
+
+cleandf2["Subject's race"].hist(figsize=(20, 9))
+
+
+# In[61]:
+
+
+cleandf2["Subject's age"] = pd.to_numeric(cleandf2["Subject's age"])
+cleandf2["Subject's age"].plot.box()
+
+
+# In[64]:
+
+
+plt.figure(figsize = (20,10))
+sns.boxplot(x="Intentional Use of Force (Developing)",y="Subject's age",data=cleandf2, palette='rainbow')
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
