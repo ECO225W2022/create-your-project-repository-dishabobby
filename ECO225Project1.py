@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # Is There A Relationship Between the Race And Age Of a Victim Of a Fatal Incident And The Police's Choice to Use Brutal Force?
+
 # The burden of fatal police violence is an urgent public health crisis in the USA. Mounting evidence shows that deaths at the hands of the police disproportionately impact people of certain races and ethnicities, pointing to systemic racism in policing [1]. Black Americans are killed at a much higher rate than White Americans. Most victims are young males between 20 and 40 years old says Washington Post [2].
 # 
-# In order to investigate the choice of intentional use of force by the police, I pose the research question, 'is there is a relationship between the race and age of the victim and the choice to use brutal force by the police'. Here, the outcome variable is the use of force and the two predictor variables are the race and, the age of the victim. 
+# In order to investigate the choice of intentional use of force by the police, I pose the research question, 'is there a relationship between the race and age of the victim and the choice to use brutal force by the police'. Here, the outcome variable is the use of force and the two predictor variables are the race and, the age of the victim. 
 # 
 # According to the National Institue of Justice, "broadly speaking, the use of force by law enforcement officers becomes necessary and is permitted under specific circumstances" [3]. In order to understand this analysis, it is important to define the "intentional use of force". The police force, in training, are taught 5 levels of force [4]. The first two levels are non-physical. The last three levels - "empty hand control", "non-lethal" and "lethal" are physical.
 # 
@@ -105,16 +107,4 @@ cleandf2["Subject's age"].plot.box()
 
 plt.figure(figsize = (20,10))
 sns.boxplot(x="Intentional Use of Force (Developing)",y="Subject's age",data=cleandf2, palette='rainbow')
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
